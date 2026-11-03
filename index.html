@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وكالة CyberTech | الرئيسية</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- استدعاء خط Cairo للغة العربية -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- الشريط العلوي (مطابق لصفحة معرض الأعمال) -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fa-solid fa-shield-halved logo-icon"></i>
+                Cyber<span>Tech</span>
+            </div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
+                <li><a href="index.html#services"><i class="fa-solid fa-layer-group"></i> خدماتنا</a></li>
+                <li><a href="portfolio.html"><i class="fa-solid fa-briefcase"></i> معرض الأعمال</a></li>
+                <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> تواصل معنا</a></li>
+            </ul>
+
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- قسم الترحيب الرئيسي -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="glow-text">حلول رقمية وأمنية متكاملة للمستقبل</h1>
+            <p>نبتكر أفكاراً فريدة في برمجة المواقع، ونحمي أصولك الرقمية بالأمن السيبراني، ونبهر عملائك بالتصميم الجرافيكي.</p>
+            <div class="hero-btns">
+                <a href="portfolio.html" class="btn btn-primary">استعرض أعمالنا</a>
+                <a href="contact.html" class="btn btn-secondary">تواصل معنا</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الخدمات -->
+    <section class="services" id="services">
+        <h2 class="section-title">خدماتنا <span>الاحترافية</span></h2>
+        <div class="services-grid">
+            
+            <div class="service-card">
+                <div class="icon"><i class="fa-solid fa-code"></i></div>
+                <h3>برمجة المواقع والتطبيقات</h3>
+                <p>بناء مواقع إلكترونية سريعة، متجاوبة، وتعتمد على أحدث التقنيات لضمان أفضل تجربة مستخدم.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>الأمن السيبراني</h3>
+                <p>حماية ثنائية وشاملة، تقييم الثغرات، وتأمين سيرفراتك وبياناتك ضد التهديدات والهجمات.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="icon"><i class="fa-solid fa-palette"></i></div>
+                <h3>التصميم الجرافيكي</h3>
+                <p>صناعة الهويات البصرية، واجهات المستخدم UX/UI، والتصاميم الإعلانية المبتكرة الجاذبة.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- التذييل -->
+    <footer>
+        <div class="footer-content">
+            <p>جميع الحقوق محفوظة &copy; 2026 وكالة CyberTech</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        // تفعيل قائمة الشاشة الصغيرة (الجوال)
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.className = 'fa-solid fa-xmark';
+                } else {
+                    icon.className = 'fa-solid fa-bars';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

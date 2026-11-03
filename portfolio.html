@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وكالة CyberTech | معرض الأعمال</title>
+    
+    <!-- خط Cairo من Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'cyber-dark': '#080c14',
+                        'cyber-card': '#0f172a',
+                        'cyber-border': '#1e293b',
+                        'neon-blue': '#00f0ff',
+                        'neon-cyan': '#38bdf8',
+                        'neon-purple': '#a855f7'
+                    },
+                    boxShadow: {
+                        'neon': '0 0 15px rgba(0, 240, 255, 0.4)',
+                        'neon-lg': '0 0 30px rgba(0, 240, 255, 0.6)',
+                        'neon-sm': '0 0 8px rgba(0, 240, 255, 0.3)',
+                    },
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* أنماط مخصصة للتأثيرات النيون وتصميم البطاقات */
+        body {
+            background-color: #080c14;
+            color: #e2e8f0;
+            font-family: 'Cairo', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glow-text-cyan {
+            text-shadow: 0 0 12px rgba(0, 240, 255, 0.7);
+        }
+
+        .glow-border {
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glow-border:hover {
+            border-color: #00f0ff;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            transform: translateY(-5px);
+        }
+
+        /* خلفية شبكية نيون */
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(0, 240, 255, 0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        /* أنماط أزرار التصفية */
+        .filter-btn {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background-color: rgba(0, 240, 255, 0.15);
+            color: #00f0ff;
+            border-color: #00f0ff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
+
+        /* أنيميشن الظهور والإخفاء لشبكة الأعمال */
+        .portfolio-item {
+            transition: all 0.4s ease-in-out;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .portfolio-item.hide {
+            opacity: 0;
+            transform: scale(0.85);
+            position: absolute;
+            pointer-events: none;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* تخصيص شريط التمرير */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080c14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0f172a;
+            border: 1px solid #00f0ff;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f0ff;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-cyber-dark bg-grid-pattern relative">
+
+    <!-- خلفيات توهج هادئة في الخلفية -->
+    <div class="fixed top-1/4 -right-32 w-96 h-96 bg-neon-blue/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="fixed bottom-1/4 -left-32 w-96 h-96 bg-neon-purple/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <!-- القائمة العلوية Navbar -->
+    <header class="sticky top-0 z-50 bg-cyber-dark/80 backdrop-blur-md border-b border-neon-blue/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- الشعار -->
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 rounded-lg bg-cyber-card border border-neon-blue flex items-center justify-center text-neon-blue shadow-neon-sm group-hover:shadow-neon transition-all">
+                        <i class="fa-solid fa-shield-halved text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-black text-white tracking-wider">Cyber<span class="text-neon-blue glow-text-cyan">Tech</span></span>
+                </a>
+
+                <!-- روابط التنقل للمكتب -->
+                <nav class="hidden md:flex items-center gap-8 font-semibold">
+                    <a href="index.html" class="text-slate-300 hover:text-neon-blue transition-colors">الرئيسية</a>
+                    <a href="index.html#services" class="text-slate-300 hover:text-neon-blue transition-colors">خدماتنا</a>
+                    <a href="portfolio.html" class="text-neon-blue font-bold glow-text-cyan border-b-2 border-neon-blue pb-1">معرض الأعمال</a>
+                    <a href="contact.html" class="text-slate-300 hover:text-neon-blue transition-colors">تواصل معنا</a>
+                </nav>
+
+                <!-- زر الإجراء الرئيسي -->
+                <div class="hidden md:block">
+                    <a href="contact.html" class="px-5 py-2.5 rounded-lg border border-neon-blue text-neon-blue font-bold shadow-neon-sm hover:bg-neon-blue hover:text-cyber-dark hover:shadow-neon transition-all duration-300 inline-flex items-center gap-2">
+                        <span>اطلب مشروعك</span>
+                        <i class="fa-solid fa-arrow-left text-sm"></i>
+                    </a>
+                </div>
+
+                <!-- زر القائمة للجوال -->
+                <button id="mobileMenuBtn" class="md:hidden text-slate-300 hover:text-neon-blue text-2xl focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- قائمة الجوال -->
+        <div id="mobileMenu" class="hidden md:hidden bg-cyber-card border-b border-neon-blue/20 px-4 pt-2 pb-6 space-y-3">
+            <a href="index.html" class="block py-2 text-slate-300 hover:text-neon-blue">الرئيسية</a>
+            <a href="index.html#services" class="block py-2 text-slate-300 hover:text-neon-blue">خدماتنا</a>
+            <a href="portfolio.html" class="block py-2 text-neon-blue font-bold">معرض الأعمال</a>
+            <a href="contact.html" class="block py-2 text-slate-300 hover:text-neon-blue">تواصل معنا</a>
+            <a href="contact.html" class="block w-full text-center mt-4 px-4 py-2 rounded-lg border border-neon-blue text-neon-blue font-bold bg-neon-blue/10">اطلب مشروعك</a>
+        </div>
+    </header>
+
+    <!-- رأس الصفحة Header Section -->
+    <section class="relative pt-12 pb-8 md:pt-16 md:pb-12 px-4 max-w-7xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-neon-blue/30 bg-neon-blue/10 text-neon-blue text-xs sm:text-sm font-bold mb-6 shadow-neon-sm">
+            <span class="w-2 h-2 rounded-full bg-neon-blue animate-ping"></span>
+            <span>ابتكاراتنا البرمجية والأمنية</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-black text-white mb-4 leading-tight">
+            معرض <span class="text-neon-blue glow-text-cyan">الأعمال والإنجازات</span>
+        </h1>
+        <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+            استكشف مجموعة من أبرز المشاريع التي قمنا بتنفيذها في مجالات تطوير المواقع، تعزيز الأمن السيبراني، وتصميم الهويات البصرية المبتكرة.
+        </p>
+    </section>
+
+    <!-- أزرار الفلترة Filter Controls -->
+    <section class="max-w-7xl mx-auto px-4 mb-10">
+        <div class="flex flex-wrap items-center justify-center gap-3 md:gap-4">
+            <button data-filter="all" class="filter-btn active px-6 py-2.5 rounded-xl border border-slate-700 bg-cyber-card text-slate-300 font-bold text-sm sm:text-base hover:border-neon-blue hover:text-neon-blue">
+                <i class="fa-solid fa-border-all ml-2"></i>الكل
+            </button>
+            <button data-filter="web" class="filter-btn px-6 py-2.5 rounded-xl border border-slate-700 bg-cyber-card text-slate-300 font-bold text-sm sm:text-base hover:border-neon-blue hover:text-neon-blue">
+                <i class="fa-solid fa-code ml-2"></i>برمجة المواقع
+            </button>
+            <button data-filter="cyber" class="filter-btn px-6 py-2.5 rounded-xl border border-slate-700 bg-cyber-card text-slate-300 font-bold text-sm sm:text-base hover:border-neon-blue hover:text-neon-blue">
+                <i class="fa-solid fa-shield-cat ml-2"></i>الأمن السيبراني
+            </button>
+            <button data-filter="design" class="filter-btn px-6 py-2.5 rounded-xl border border-slate-700 bg-cyber-card text-slate-300 font-bold text-sm sm:text-base hover:border-neon-blue hover:text-neon-blue">
+                <i class="fa-solid fa-wand-magic-sparkles ml-2"></i>التصميم الجرافيكي
+            </button>
+        </div>
+    </section>
+
+    <!-- شبكة معرض الأعمال Portfolio Grid -->
+    <section class="max-w-7xl mx-auto px-4 pb-20 flex-1 w-full">
+        <div id="portfolioGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative min-h-[400px]">
+            
+            <!-- مشروع 1: برمجة مواقع -->
+            <div class="portfolio-item web bg-cyber-card rounded-2xl overflow-hidden glow-border flex flex-col group cursor-pointer" onclick="openProjectModal(0)">
+                <div class="relative h-56 bg-slate-800 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="منصة تجارة إلكترونية" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cyber-card via-transparent to-transparent"></div>
+                    <span class="absolute top-4 right-4 bg-cyber-dark/80 backdrop-blur-md text-neon-blue border border-neon-blue/40 text-xs px-3 py-1 rounded-full font-bold">
+                        برمجة المواقع
+                    </span>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-neon-blue transition-colors">منصة تجارة إلكترونية متطورة</h3>
+                    <p class="text-slate-400 text-sm mb-4 line-clamp-2">بناء متجر إلكتروني عالي الأداء مع نظام دفع مدمج وسرعة تحميل فائقة وتصميم متجاوب بالكامل.</p>
+                    <div class="flex flex-wrap gap-2 mb-6 mt-auto">
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Next.js</span>
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Tailwind CSS</span>
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Stripe API</span>
+                    </div>
+                    <button class="w-full py-2.5 rounded-lg border border-neon-blue/30 text-neon-blue text-sm font-bold group-hover:bg-neon-blue group-hover:text-cyber-dark transition-all flex items-center justify-center gap-2">
+                        <span>عرض التفاصيل</span>
+                        <i class="fa-solid fa-up-right-from-square text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- مشروع 2: أمن سيبراني -->
+            <div class="portfolio-item cyber bg-cyber-card rounded-2xl overflow-hidden glow-border flex flex-col group cursor-pointer" onclick="openProjectModal(1)">
+                <div class="relative h-56 bg-slate-800 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80" alt="تدقيق أمني بنكي" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cyber-card via-transparent to-transparent"></div>
+                    <span class="absolute top-4 right-4 bg-cyber-dark/80 backdrop-blur-md text-neon-blue border border-neon-blue/40 text-xs px-3 py-1 rounded-full font-bold">
+                        الأمن السيبراني
+                    </span>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-neon-blue transition-colors">تدقيق واختبار اختراق قطاع مصرفي</h3>
+                    <p class="text-slate-400 text-sm mb-4 line-clamp-2">فحص شامل للثغرات الأمنية واختبار اختراق متقدم للبنية التحتية المصرفية مع تقديم تقرير حماية متكامل.</p>
+                    <div class="flex flex-wrap gap-2 mb-6 mt-auto">
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Penetration Testing</span>
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">OWASP</span>
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Burp Suite</span>
+                    </div>
+                    <button class="w-full py-2.5 rounded-lg border border-neon-blue/30 text-neon-blue text-sm font-bold group-hover:bg-neon-blue group-hover:text-cyber-dark transition-all flex items-center justify-center gap-2">
+                        <span>عرض التفاصيل</span>
+                        <i class="fa-solid fa-up-right-from-square text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- مشروع 3: تصميم جرافيكي -->
+            <div class="portfolio-item design bg-cyber-card rounded-2xl overflow-hidden glow-border flex flex-col group cursor-pointer" onclick="openProjectModal(2)">
+                <div class="relative h-56 bg-slate-800 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=800&q=80" alt="هوية بصرية كاملة" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cyber-card via-transparent to-transparent"></div>
+                    <span class="absolute top-4 right-4 bg-cyber-dark/80 backdrop-blur-md text-neon-blue border border-neon-blue/40 text-xs px-3 py-1 rounded-full font-bold">
+                        التصميم الجرافيكي
+                    </span>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-neon-blue transition-colors">هوية بصرية لشركة ذكاء اصطناعي</h3>
+                    <p class="text-slate-400 text-sm mb-4 line-clamp-2">ابتكار شعار ودليل هوية تجارية عصري يعبر عن مستقبل التقنية والذكاء الاصطناعي بألوان نيون مبهرة.</p>
+                    <div class="flex flex-wrap gap-2 mb-6 mt-auto">
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Brand Identity</span>
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Illustrator</span>
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Photoshop</span>
+                    </div>
+                    <button class="w-full py-2.5 rounded-lg border border-neon-blue/30 text-neon-blue text-sm font-bold group-hover:bg-neon-blue group-hover:text-cyber-dark transition-all flex items-center justify-center gap-2">
+                        <span>عرض التفاصيل</span>
+                        <i class="fa-solid fa-up-right-from-square text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- مشروع 4: برمجة مواقع -->
+            <div class="portfolio-item web bg-cyber-card rounded-2xl overflow-hidden glow-border flex flex-col group cursor-pointer" onclick="openProjectModal(3)">
+                <div class="relative h-56 bg-slate-800 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" alt="لوحة تحكم SaaS" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cyber-card via-transparent to-transparent"></div>
+                    <span class="absolute top-4 right-4 bg-cyber-dark/80 backdrop-blur-md text-neon-blue border border-neon-blue/40 text-xs px-3 py-1 rounded-full font-bold">
+                        برمجة المواقع
+                    </span>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-neon-blue transition-colors">لوحة تحكم سحابية SaaS Dashboard</h3>
+                    <p class="text-slate-400 text-sm mb-4 line-clamp-2">تطوير منصة تحليل بيانات سحابية مع رسوم بيانية تفاعلية ونظام إدارة صلاحيات للمستخدمين.</p>
+                    <div class="flex flex-wrap gap-2 mb-6 mt-auto">
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">React.js</span>
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">TypeScript</span>
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Chart.js</span>
+                    </div>
+                    <button class="w-full py-2.5 rounded-lg border border-neon-blue/30 text-neon-blue text-sm font-bold group-hover:bg-neon-blue group-hover:text-cyber-dark transition-all flex items-center justify-center gap-2">
+                        <span>عرض التفاصيل</span>
+                        <i class="fa-solid fa-up-right-from-square text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- مشروع 5: أمن سيبراني -->
+            <div class="portfolio-item cyber bg-cyber-card rounded-2xl overflow-hidden glow-border flex flex-col group cursor-pointer" onclick="openProjectModal(4)">
+                <div class="relative h-56 bg-slate-800 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="نظام مراقبة SOC" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cyber-card via-transparent to-transparent"></div>
+                    <span class="absolute top-4 right-4 bg-cyber-dark/80 backdrop-blur-md text-neon-blue border border-neon-blue/40 text-xs px-3 py-1 rounded-full font-bold">
+                        الأمن السيبراني
+                    </span>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-neon-blue transition-colors">نظام مراقبة الأحداث الأمنية SOC</h3>
+                    <p class="text-slate-400 text-sm mb-4 line-clamp-2">إعداد ورصد مراكز العمليات الأمنية لتحليل التهديدات الفورية والاستجابة السريعة للهجمات السيبرانية.</p>
+                    <div class="flex flex-wrap gap-2 mb-6 mt-auto">
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">SIEM</span>
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Splunk</span>
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Threat Intelligence</span>
+                    </div>
+                    <button class="w-full py-2.5 rounded-lg border border-neon-blue/30 text-neon-blue text-sm font-bold group-hover:bg-neon-blue group-hover:text-cyber-dark transition-all flex items-center justify-center gap-2">
+                        <span>عرض التفاصيل</span>
+                        <i class="fa-solid fa-up-right-from-square text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- مشروع 6: تصميم جرافيكي -->
+            <div class="portfolio-item design bg-cyber-card rounded-2xl overflow-hidden glow-border flex flex-col group cursor-pointer" onclick="openProjectModal(5)">
+                <div class="relative h-56 bg-slate-800 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80" alt="تصميم واجهات تطبيقي" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cyber-card via-transparent to-transparent"></div>
+                    <span class="absolute top-4 right-4 bg-cyber-dark/80 backdrop-blur-md text-neon-blue border border-neon-blue/40 text-xs px-3 py-1 rounded-full font-bold">
+                        التصميم الجرافيكي
+                    </span>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-neon-blue transition-colors">واجهات تطبيق محفظة كريبتو UX/UI</h3>
+                    <p class="text-slate-400 text-sm mb-4 line-clamp-2">تصميم واجهات تجربة ومستخدم تفاعلية بنظام المظهر الداكن والتأثيرات النيون لتطبيق عملات مشفرة.</p>
+                    <div class="flex flex-wrap gap-2 mb-6 mt-auto">
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Figma</span>
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">UI/UX Design</span>
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Prototyping</span>
+                    </div>
+                    <button class="w-full py-2.5 rounded-lg border border-neon-blue/30 text-neon-blue text-sm font-bold group-hover:bg-neon-blue group-hover:text-cyber-dark transition-all flex items-center justify-center gap-2">
+                        <span>عرض التفاصيل</span>
+                        <i class="fa-solid fa-up-right-from-square text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- مشروع 7: برمجة مواقع -->
+            <div class="portfolio-item web bg-cyber-card rounded-2xl overflow-hidden glow-border flex flex-col group cursor-pointer" onclick="openProjectModal(6)">
+                <div class="relative h-56 bg-slate-800 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80" alt="بوابة 핀تيك مالية" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cyber-card via-transparent to-transparent"></div>
+                    <span class="absolute top-4 right-4 bg-cyber-dark/80 backdrop-blur-md text-neon-blue border border-neon-blue/40 text-xs px-3 py-1 rounded-full font-bold">
+                        برمجة المواقع
+                    </span>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-neon-blue transition-colors">بوابة خدمات مالية Fintech Portal</h3>
+                    <p class="text-slate-400 text-sm mb-4 line-clamp-2">تطوير منصة تحويلات وإدارة أصول مالية مشفرة بأعلى معايير الأمان والسرعة.</p>
+                    <div class="flex flex-wrap gap-2 mb-6 mt-auto">
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Vue.js</span>
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Node.js</span>
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Web3</span>
+                    </div>
+                    <button class="w-full py-2.5 rounded-lg border border-neon-blue/30 text-neon-blue text-sm font-bold group-hover:bg-neon-blue group-hover:text-cyber-dark transition-all flex items-center justify-center gap-2">
+                        <span>عرض التفاصيل</span>
+                        <i class="fa-solid fa-up-right-from-square text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- مشروع 8: أمن سيبراني -->
+            <div class="portfolio-item cyber bg-cyber-card rounded-2xl overflow-hidden glow-border flex flex-col group cursor-pointer" onclick="openProjectModal(7)">
+                <div class="relative h-56 bg-slate-800 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80" alt="بنية Zero-Trust" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cyber-card via-transparent to-transparent"></div>
+                    <span class="absolute top-4 right-4 bg-cyber-dark/80 backdrop-blur-md text-neon-blue border border-neon-blue/40 text-xs px-3 py-1 rounded-full font-bold">
+                        الأمن السيبراني
+                    </span>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-neon-blue transition-colors">تأسيس بنية أمنية Zero-Trust</h3>
+                    <p class="text-slate-400 text-sm mb-4 line-clamp-2">تطبيق هندسة المعمارية الأمنية القائمة على الثقة الصفرية لحماية خوادم وشبكات شركة حكومية.</p>
+                    <div class="flex flex-wrap gap-2 mb-6 mt-auto">
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Zero Trust</span>
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">IAM</span>
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Cloud Security</span>
+                    </div>
+                    <button class="w-full py-2.5 rounded-lg border border-neon-blue/30 text-neon-blue text-sm font-bold group-hover:bg-neon-blue group-hover:text-cyber-dark transition-all flex items-center justify-center gap-2">
+                        <span>عرض التفاصيل</span>
+                        <i class="fa-solid fa-up-right-from-square text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- مشروع 9: تصميم جرافيكي -->
+            <div class="portfolio-item design bg-cyber-card rounded-2xl overflow-hidden glow-border flex flex-col group cursor-pointer" onclick="openProjectModal(8)">
+                <div class="relative h-56 bg-slate-800 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="رسوم ثلاثية الأبعاد" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cyber-card via-transparent to-transparent"></div>
+                    <span class="absolute top-4 right-4 bg-cyber-dark/80 backdrop-blur-md text-neon-blue border border-neon-blue/40 text-xs px-3 py-1 rounded-full font-bold">
+                        التصميم الجرافيكي
+                    </span>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-neon-blue transition-colors">مجموعة رسومات ثلاثية الأبعاد 3D Tech</h3>
+                    <p class="text-slate-400 text-sm mb-4 line-clamp-2">تصميم عناصر ورسومات 3D ثلاثية الأبعاد بطابع نيون لاستخدامها في الحملات الإعلانية التقنية.</p>
+                    <div class="flex flex-wrap gap-2 mb-6 mt-auto">
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Blender</span>
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Cinema 4D</span>
+                        <span class="text-[11px] bg-slate-800 text-neon-cyan px-2.5 py-0.5 rounded border border-slate-700">Octane Render</span>
+                    </div>
+                    <button class="w-full py-2.5 rounded-lg border border-neon-blue/30 text-neon-blue text-sm font-bold group-hover:bg-neon-blue group-hover:text-cyber-dark transition-all flex items-center justify-center gap-2">
+                        <span>عرض التفاصيل</span>
+                        <i class="fa-solid fa-up-right-from-square text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- النافذة المنبثقة للتفاصيل Modal -->
+    <div id="projectModal" class="fixed inset-0 z-50 bg-cyber-dark/90 backdrop-blur-md flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-cyber-card border border-neon-blue/40 rounded-2xl max-w-2xl w-full p-6 sm:p-8 relative shadow-neon-lg max-h-[90vh] overflow-y-auto">
+            <!-- زر الإغلاق -->
+            <button onclick="closeProjectModal()" class="absolute top-4 left-4 w-10 h-10 rounded-full bg-slate-800 text-slate-300 hover:text-neon-blue hover:border hover:border-neon-blue flex items-center justify-center transition-all">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- محتوى النافذة -->
+            <div id="modalContent">
+                <!-- سيتم ملء البيانات ديناميكياً باستخدام JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- التذييل Footer -->
+    <footer class="bg-cyber-card border-t border-neon-blue/20 py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <div class="w-8 h-8 rounded bg-cyber-dark border border-neon-blue flex items-center justify-center text-neon-blue">
+                    <i class="fa-solid fa-shield-halved text-sm"></i>
+                </div>
+                <span class="text-xl font-bold text-white">Cyber<span class="text-neon-blue">Tech</span></span>
+            </div>
+            <p class="text-slate-400 text-sm mb-6">نبتكر الحلول البرمجية ونحمي الأصول الرقمية بأعلى معايير الإتقان.</p>
+            <div class="flex justify-center gap-4 text-slate-400 mb-6">
+                <a href="#" class="w-9 h-9 rounded-full bg-cyber-dark border border-slate-700 hover:border-neon-blue hover:text-neon-blue flex items-center justify-center transition-all"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="w-9 h-9 rounded-full bg-cyber-dark border border-slate-700 hover:border-neon-blue hover:text-neon-blue flex items-center justify-center transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" class="w-9 h-9 rounded-full bg-cyber-dark border border-slate-700 hover:border-neon-blue hover:text-neon-blue flex items-center justify-center transition-all"><i class="fa-brands fa-github"></i></a>
+            </div>
+            <p class="text-xs text-slate-500">جميع الحقوق محفوظة &copy; 2026 وكالة CyberTech</p>
+        </div>
+    </footer>
+
+    <!-- برمجة التفاعلات JavaScript -->
+    <script>
+        // بيانات المشاريع للنافذة المنبثقة Modal Data
+        const projectsData = [
+            {
+                title: "منصة تجارة إلكترونية متطورة",
+                category: "برمجة المواقع",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+                description: "قمنا بتطوير منصة تجارة إلكترونية متكاملة تتيح للمستخدمين تجربة تسوق سلسة وسريعة جداً. تم ربط المنصة ببوابات دفع متعددة ونظام لوحة تحكم فورية لمتابعة المخزون والمبيعات.",
+                client: "شركة المتجر الحديث",
+                tags: ["Next.js", "Tailwind CSS", "Stripe API", "Node.js"],
+                demoLink: "#"
+            },
+            {
+                title: "تدقيق واختبار اختراق قطاع مصرفي",
+                category: "الأمن السيبراني",
+                image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
+                description: "نفذ فريق الأمن السيبراني لدينا عملية اختبار اختراق وتحديد الثغرات الأمنية للشبكة والتطبيقات البنكية، وتوفير حلول فورية لتأمين بيانات أكثر من 500,000 عميل بنجاح.",
+                client: "بنك الأمان الدولي",
+                tags: ["Penetration Testing", "OWASP", "Burp Suite", "Red Teaming"],
+                demoLink: "#"
+            },
+            {
+                title: "هوية بصرية لشركة ذكاء اصطناعي",
+                category: "التصميم الجرافيكي",
+                image: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=800&q=80",
+                description: "تصميم دليل هوية بصرية كامل يشمل الشعار، دراسات الألوان النيونية الحديثة، الخطوط الخاصة، وتطبيقات الهوية على كافة المطبوعات والوسائط الرقمية.",
+                client: "شركة AI Nexus",
+                tags: ["Brand Identity", "Illustrator", "Photoshop", "3D Branding"],
+                demoLink: "#"
+            },
+            {
+                title: "لوحة تحكم سحابية SaaS Dashboard",
+                category: "برمجة المواقع",
+                image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80",
+                description: "بناء لوحة تحكم ذكية لإدارة الاشتراكات والمستخدمين لعرض إحصائيات البيانات والتحليلات البيانية بشكل تفاعلي وفوري مع دعم المظهر الداكن النيون.",
+                client: "مؤسسة DataCloud",
+                tags: ["React.js", "TypeScript", "Chart.js", "REST APIs"],
+                demoLink: "#"
+            },
+            {
+                title: "نظام مراقبة الأحداث الأمنية SOC",
+                category: "الأمن السيبراني",
+                image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80",
+                description: "إعداد وغرفة عمليات مراقبة حية لرصد أي نشاط غير مصرح به على الخوادم المركزية والحد من الهجمات الموجهة DDoS وتشفير الفدية بفعالية تامة.",
+                client: "مجموعة الحلول التقنية",
+                tags: ["SIEM", "Splunk", "Threat Intelligence", "Firewall Setup"],
+                demoLink: "#"
+            },
+            {
+                title: "واجهات تطبيق محفظة كريبتو UX/UI",
+                category: "التصميم الجرافيكي",
+                image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80",
+                description: "دراسة وتصميم تجربة مستخدم سلسة لتطبيق محفظة عملات رقمية، مع التركيز على سهولة إجراء التحويلات وأمان الوصول بنظرة مستقبلية عصرية.",
+                client: "تطبيق CryptoPay",
+                tags: ["Figma", "UI/UX Design", "Prototyping", "Design System"],
+                demoLink: "#"
+            },
+            {
+                title: "بوابة خدمات مالية Fintech Portal",
+                category: "برمجة المواقع",
+                image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80",
+                description: "تطوير بوابة دفع سريعة وآمنة للغاية مع معالجة البيانات الدقيقة والتأكد من توافقية التشفير التام للنقل المالي المباشر.",
+                client: "مؤسسة الابتكار المالي",
+                tags: ["Vue.js", "Node.js", "Web3", "PostgreSQL"],
+                demoLink: "#"
+            },
+            {
+                title: "تأسيس بنية أمنية Zero-Trust",
+                category: "الأمن السيبراني",
+                image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
+                description: "بناء وتصميم هندسة الأمن السيبراني للوصول المشروط والتحقق المتعدد لضمان عدم اختراق أي جزء من الشبكة حتى في حالة تضرر أحد أطرافها.",
+                client: "الجهة الرقمية الوطنية",
+                tags: ["Zero Trust", "IAM", "Cloud Security", "Multi-Factor"],
+                demoLink: "#"
+            },
+            {
+                title: "مجموعة رسومات ثلاثية الأبعاد 3D Tech",
+                category: "التصميم الجرافيكي",
+                image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+                description: "إنشاء أصول ورسوم توضيحية ثلاثية الأبعاد تعبر عن مفاهيم الحوسبة السحابية والتشفير وتداول البيانات بألوان ضوئية نيونية مميزة.",
+                client: "وكالة الإعلام الرقمي",
+                tags: ["Blender", "Cinema 4D", "Octane Render", "3D Assets"],
+                demoLink: "#"
+            }
+        ];
+
+        // منطق فلترة المشاريع Filter Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // تفعيل الزر المختار
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.classList.contains(filterValue)) {
+                        item.classList.remove('hide');
+                    } else {
+                        item.classList.add('hide');
+                    }
+                });
+            });
+        });
+
+        // منطق القائمة للجوال Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // منطق النافذة المنبثقة Modal Logic
+        const projectModal = document.getElementById('projectModal');
+        const modalContent = document.getElementById('modalContent');
+
+        function openProjectModal(index) {
+            const data = projectsData[index];
+            
+            modalContent.innerHTML = `
+                <div class="relative h-64 rounded-xl overflow-hidden mb-6 border border-slate-700">
+                    <img src="${data.image}" alt="${data.title}" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cyber-card via-transparent to-transparent"></div>
+                    <span class="absolute top-3 right-3 bg-cyber-dark/80 backdrop-blur-md text-neon-blue border border-neon-blue/40 text-xs px-3 py-1 rounded-full font-bold">
+                        ${data.category}
+                    </span>
+                </div>
+                
+                <h2 class="text-2xl font-black text-white mb-2">${data.title}</h2>
+                <div class="flex items-center gap-2 text-slate-400 text-xs mb-4">
+                    <i class="fa-solid fa-building text-neon-blue"></i>
+                    <span>العميل: <strong class="text-slate-200">${data.client}</strong></span>
+                </div>
+                
+                <p class="text-slate-300 text-sm leading-relaxed mb-6">${data.description}</p>
+                
+                <div class="mb-6">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">التقنيات الأدوات المستخدمة:</h4>
+                    <div class="flex flex-wrap gap-2">
+                        ${data.tags.map(tag => `<span class="text-xs bg-slate-800 text-neon-blue px-3 py-1 rounded-lg border border-neon-blue/20">${tag}</span>`).join('')}
+                    </div>
+                </div>
+
+                <div class="flex gap-4 pt-4 border-t border-slate-800">
+                    <a href="contact.html" class="flex-1 py-3 rounded-xl bg-neon-blue text-cyber-dark font-bold text-center hover:shadow-neon transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>اطلب مشروعاً مماثلاً</span>
+                    </a>
+                    <button onclick="closeProjectModal()" class="px-6 py-3 rounded-xl border border-slate-700 text-slate-300 font-bold hover:bg-slate-800 transition-colors">
+                        إغلاق
+                    </button>
+                </div>
+            `;
+
+            projectModal.classList.remove('hidden');
+            setTimeout(() => {
+                projectModal.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function closeProjectModal() {
+            projectModal.classList.add('opacity-0');
+            setTimeout(() => {
+                projectModal.classList.add('hidden');
+            }, 300);
+        }
+
+        // إغلاق النافذة عند الضغط خارجها
+        projectModal.addEventListener('click', (e) => {
+            if (e.target === projectModal) {
+                closeProjectModal();
+            }
+        });
+    </script>
+</body>
+</html>

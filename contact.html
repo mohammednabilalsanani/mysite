@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وكالة CyberTech | تواصل معنا</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- خط Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- الشريط العلوي الموحد -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fa-solid fa-shield-halved logo-icon"></i>
+                Cyber<span>Tech</span>
+            </div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
+                <li><a href="index.html#services"><i class="fa-solid fa-layer-group"></i> خدماتنا</a></li>
+                <li><a href="portfolio.html"><i class="fa-solid fa-briefcase"></i> معرض الأعمال</a></li>
+                <li><a href="contact.html" class="active"><i class="fa-solid fa-envelope"></i> تواصل معنا</a></li>
+            </ul>
+
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- قسم تواصل معنا -->
+    <section class="contact-section">
+        <div class="contact-header">
+            <h1 class="glow-text">تواصل <span>معنا</span></h1>
+            <p>هل لديك مشروع أو استفسار أمني أو تصميم تريد تنفيذه؟ نحن هنا لمساعدتك وتحويل أفكارك إلى واقع رقمي.</p>
+        </div>
+
+        <div class="contact-container">
+            <!-- بطاقات معلومات الاتصال -->
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="details">
+                        <h3>البريد الإلكتروني</h3>
+                        <p>info@cybertech.com</p>
+                        <p>support@cybertech.com</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="details">
+                        <h3>رقم الهاتف</h3>
+                        <p>+966 50 123 4567</p>
+                        <p>+966 11 987 6543</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="details">
+                        <h3>المقر الرئيسي</h3>
+                        <p>الرياض، المملكة العربية السعودية</p>
+                        <p>حي الصحافة - برج التقنية</p>
+                    </div>
+                </div>
+
+                <!-- وسائل التواصل الاجتماعي -->
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- نموذج المراسلة النيون -->
+            <div class="contact-form-wrapper">
+                <form id="contactForm" class="contact-form">
+                    <h2>أرسل لنا <span>رسالة</span></h2>
+                    
+                    <div class="input-group">
+                        <label for="name">الاسم الكامل</label>
+                        <input type="text" id="name" required placeholder="أدخل اسمك الكريم">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" required placeholder="example@domain.com">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="service">الخدمة المطلوبة</label>
+                        <select id="service" required>
+                            <option value="" disabled selected>اختر الخدمة...</option>
+                            <option value="web">برمجة وتطوير المواقع</option>
+                            <option value="cyber">خدمات الأمن السيبراني</option>
+                            <option value="design">التصميم الجرافيكي الهوية البصرية</option>
+                            <option value="other">استشارة تقنية أخرى</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="message">تفاصيل الرسالة</label>
+                        <textarea id="message" rows="5" required placeholder="اكتب تفاصيل مشروعك أو استفسارك هنا..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-submit">
+                        <i class="fa-solid fa-paper-plane"></i> إرسال الرسالة
+                    </button>
+
+                    <!-- إشعار النجاح -->
+                    <div id="formStatus" class="form-status"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- التذييل -->
+    <footer>
+        <div class="footer-content">
+            <p>جميع الحقوق محفوظة &copy; 2026 وكالة CyberTech</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
